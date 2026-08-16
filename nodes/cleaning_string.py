@@ -26,7 +26,7 @@ class CleaningString(io.ComfyNode):
     def execute(cls, string: str) -> io.NodeOutput:
         result = re.sub(r"[\r\n]+", " ", string)
         result = re.sub(r" +,", ",", result)
-        result = re.sub(r",[ \t]+,", ",", result)
+        result = re.sub(r",(?:[ \t]*,)+", ",", result)
         result = re.sub(r" {2,}", " ", result)
         return io.NodeOutput(result)
 
